@@ -1,5 +1,5 @@
 # hello-minio
-Upload files to the R2 sample. Use MinIO for upload tests
+Upload files to the R2 sample. Use MinIO for upload tests.
 
 ## Upload
 ```
