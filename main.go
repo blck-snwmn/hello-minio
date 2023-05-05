@@ -10,9 +10,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
-var accountID = os.Getenv("CF_ACCOUNT_ID")
-
 func main() {
+	accountID := os.Getenv("CF_ACCOUNT_ID")
 	if len(os.Args) < 2 {
 		fmt.Println("usage: go run main.go /path/to/local/file")
 		return
