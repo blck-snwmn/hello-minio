@@ -29,7 +29,7 @@ func main() {
 		return
 	}
 
-	err = upload(cfg, os.Args[1])
+	err = upload(context.Background(), s3.NewFromConfig(cfg), os.Args[1])
 	if err != nil {
 		fmt.Println("failed to upload,", err)
 		return
@@ -37,15 +37,14 @@ func main() {
 	fmt.Println("success upload")
 }
 
-func upload(cfg aws.Config, path string) error {
+func upload(ctx context.Context, svc *s3.Client, path string) error {
 	file, err := os.Open(path)
 	if err != nil {
 		return fmt.Errorf("failed to open file: %w", err)
 	}
 	defer file.Close()
 
-	svc := s3.NewFromConfig(cfg)
-	_, err = svc.PutObject(context.Background(), &s3.PutObjectInput{
+	_, err = svc.PutObject(ctx, &s3.PutObjectInput{
 		Bucket: aws.String("my-bucket-2023e4a"),
 		Key:    aws.String("test"),
 		Body:   file,
