@@ -84,7 +84,7 @@ func testMain(m *testing.M) int {
 func Test_upload(t *testing.T) {
 	dir := t.TempDir()
 	filePath := filepath.Join(dir, "test.txt")
-	err := os.WriteFile(filePath, []byte("test-data-in-file"), 0666)
+	err := os.WriteFile(filePath, []byte("test-data-in-file"), 0600)
 	if err != nil {
 		t.Fatal(err)
 	}
